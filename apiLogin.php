@@ -1,5 +1,6 @@
 <?php
     require_once('jwt_utils.php');
+    require_once('dbConnection.php');
 
     /// Librairies éventuelles (pour la connexion à la BDD, etc.)
     //include('mylib.php');
@@ -13,8 +14,6 @@
         deliver_response(405,"ERREUR : Méthode non supportée",null);
     }else{
         /// Cas de la méthode POST
-        $user = "user";
-        $mdp = "1234";
         /// Récupération des données envoyées par le Client
         $postedData = file_get_contents('php://input');
         $values = json_decode($postedData,true);
@@ -22,18 +21,31 @@
             deliver_response(400,"Identifiant ou mot de passe non renseigné",null);
             die();  
         } else{
-            if($values['user']!=$user){
-                deliver_response(400,"Identifiant inconnu",null);
-                die();
+            $query = "SELECT idUtilisateur, identifiant, motDePasse, role FROM utilisateur";
+            $req = $linkpdo -> prepare($query);
+            if($req == false){
+                die('Erreur lors de la création du statement');
             }
-            if($values['mdp'] != $mdp){
-                deliver_response(400,"Mot de passe incorrect",null);
-                die();
-            }  
-        deliver_response(201, "Votre message", ["token"=>generate_jwt(
-            ["alg"=>"SHA256","typ"=>"JWT"],
-            ["username"=>$user,"password"=>$mdp, "exp" => time() + 3600])
-        ]);
+            $req2 = $req->execute();
+            if($req2 == false){
+                    die('Erreur execute');
+            }
+            while($row = $req -> fetch()) {
+                if($values['user']==$row['identifiant']){
+                    if($values['mdp'] == $row['motDePasse']){
+                        deliver_response(201, "Connexion réussie", ["token"=>generate_jwt(
+                            ["alg"=> "SHA256", "typ"=>"JWT"],
+                            ["idUtilisateur"=>$row['idUtilisateur'],"role"=>$row['role'], "exp"=> time()+3600]
+                            )]);
+                    }
+                    else {
+                        deliver_response(400,"Mot de passe incorrect",null);
+                        die();
+                    }
+                } 
+            }
+            deliver_response(400,"Identifiant inconnu",null);
+            die();
         }
     }
     /// Envoi de la réponse au Client

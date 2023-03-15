@@ -10,7 +10,7 @@
     /// Identification du type de méthode HTTP envoyée par le client
     $http_method = $_SERVER['REQUEST_METHOD'];
     if($http_method !="POST"){
-        deliver_response(400,"Pas de méthode post : 1",null);
+        deliver_response(405,"ERREUR : Méthode non supportée",null);
     }else{
         /// Cas de la méthode POST
         $user = "user";
@@ -19,16 +19,16 @@
         $postedData = file_get_contents('php://input');
         $values = json_decode($postedData,true);
         if(!isset($values['user']) || !isset($values['mdp'])){
-            deliver_response(400,"Pas de user ou mdp : 2",null);
-            die;  
+            deliver_response(400,"Identifiant ou mot de passe non renseigné",null);
+            die();  
         } else{
             if($values['user']!=$user){
-                deliver_response(400,"Pas bon user : 3",null);
-                die;
+                deliver_response(400,"Identifiant inconnu",null);
+                die();
             }
             if($values['mdp'] != $mdp){
-                deliver_response(400,"Pas bon mdp : 4",null);
-                die;
+                deliver_response(400,"Mot de passe incorrect",null);
+                die();
             }  
         deliver_response(201, "Votre message", ["token"=>generate_jwt(
             ["alg"=>"SHA256","typ"=>"JWT"],

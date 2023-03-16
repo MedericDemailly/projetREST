@@ -2,11 +2,15 @@
     require_once('jwt_utils.php');
     require_once('../config/dbConnection.php');
     require_once('../model/utilisateur.php');
+    $utilisateur = htmlspecialchars($_POST['user']);
+    $mdp = htmlspecialchars($_POST['mdp']);
 
     $database = new Database();
     $db = $database->getConnexion();
 
     $user = new \model\utilisateur($db);
+
+
 
     /// Librairies éventuelles (pour la connexion à la BDD, etc.)
     //include('mylib.php');
@@ -18,53 +22,44 @@
     $http_method = $_SERVER['REQUEST_METHOD'];
     if($http_method != "POST"){
         deliver_response(405,"ERREUR : Méthode non supportée",null);
-    }else{
-        /// Cas de la méthode POST
-        /// Récupération des données envoyées par le Client
-        $postedData = file_get_contents('php://input');
-        $values = json_decode($postedData,true);
-        if(!empty($values->identifiant) && !empty($values->motDePasse)){
-            deliver_response(400,"Identifiant ou mot de passe non renseigné",null);
-            die();  
-        } else{
+    }else {
+        if (empty($utilisateur) && empty($mdp)) {
+            deliver_response(400, "Identifiant ou mot de passe non renseigne", null);
+            die();
+        } else {
             $stmt = $user->GET();
-            if(!$stmt){
+            if (!$stmt) {
                 die('Erreur lors de la création du statement');
             }
-            $req2 = $stmt->execute();
-            if(!$req2){
-                    die('Erreur execute');
-            }
-            while($row = $stmt -> fetch()) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 extract($row);
-                if($values->user==$user){
-                    if($values->mdp == $mdp){
-                        deliver_response(201, "Connexion réussie", ["token"=>generate_jwt(
-                            ["alg"=> "SHA256", "typ"=>"JWT"],
-                            ["idUtilisateur"=>$row['idUtilisateur'],"role"=>$row['role'], "exp"=> time()+3600]
-                            )]);
+                if ($utilisateur == $identifiant) {
+                    if ($utilisateur == $motDePasse) {
+                        deliver_response(201, "Connexion reussie", ["token" => generate_jwt(
+                            ["alg" => "SHA256", "typ" => "JWT"],
+                            ["idUtilisateur" => $idUtilisateur, "role" => $role, "exp" => time() + 3600]
+                        )]);
+                        die();
+                    } else {
+                        deliver_response(400, "Mot de passe incorrect", null);
                         die();
                     }
-                    else {
-                        deliver_response(400,"Mot de passe incorrect",null);
-                        die();
-                    }
-                } 
+                }
             }
-            deliver_response(400,"Identifiant inconnu",null);
+            deliver_response(400, "Identifiant inconnu", null);
             die();
         }
     }
-    /// Envoi de la réponse au Client
-    function deliver_response($status, $status_message, $data){
-        /// Paramétrage de l'entête HTTP, suite
-        header("HTTP/1.1 $status $status_message");
-        /// Paramétrage de la réponse retournée
-        $response['status'] = $status;
-        $response['status_message'] = $status_message;
-        $response['data'] = $data;
-        /// Mapping de la réponse au format JSON
-        $json_response = json_encode($response);
-        echo $json_response;
-    }
-   ?>
+
+        /// Envoi de la réponse au Client
+        function deliver_response($status, $status_message, $data) {
+            /// Paramétrage de l'entête HTTP, suite
+            header("HTTP/1.1 $status $status_message");
+            /// Paramétrage de la réponse retournée
+            $response['status'] = $status;
+            $response['status_message'] = $status_message;
+            $response['data'] = $data;
+            /// Mapping de la réponse au format JSON
+            $json_response = json_encode($response);
+            echo $json_response;
+        }

@@ -1,7 +1,7 @@
 <?php
     require_once('jwt_utils.php');
-    require_once('config/dbConnection.php');
-    require_once('model/utilisateur.php');
+    require_once('../config/dbConnection.php');
+    require_once('../model/utilisateur.php');
 
     $database = new Database();
     $db = $database->getConnexion();

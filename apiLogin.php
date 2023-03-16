@@ -37,6 +37,7 @@
                             ["alg"=> "SHA256", "typ"=>"JWT"],
                             ["idUtilisateur"=>$row['idUtilisateur'],"role"=>$row['role'], "exp"=> time()+3600]
                             )]);
+                        die();
                     }
                     else {
                         deliver_response(400,"Mot de passe incorrect",null);

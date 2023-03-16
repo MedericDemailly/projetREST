@@ -23,7 +23,7 @@
         /// Récupération des données envoyées par le Client
         $postedData = file_get_contents('php://input');
         $values = json_decode($postedData,true);
-        if(!isset($values['user']) || !isset($values['mdp'])){
+        if(!empty($values->identifiant) && !empty($values->motDePasse)){
             deliver_response(400,"Identifiant ou mot de passe non renseigné",null);
             die();  
         } else{
@@ -36,8 +36,9 @@
                     die('Erreur execute');
             }
             while($row = $stmt -> fetch()) {
-                if($values['user']==$row['identifiant']){
-                    if($values['mdp'] == $row['motDePasse']){
+                extract($row);
+                if($values->user==$user){
+                    if($values->mdp == $mdp){
                         deliver_response(201, "Connexion réussie", ["token"=>generate_jwt(
                             ["alg"=> "SHA256", "typ"=>"JWT"],
                             ["idUtilisateur"=>$row['idUtilisateur'],"role"=>$row['role'], "exp"=> time()+3600]

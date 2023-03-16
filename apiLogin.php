@@ -1,6 +1,8 @@
 <?php
     require_once('jwt_utils.php');
-    require_once('dbConnection.php');
+    require_once('../projetREST/config/dbConnection.php');
+
+    $database = new dbConnection();
 
     /// Librairies éventuelles (pour la connexion à la BDD, etc.)
     //include('mylib.php');

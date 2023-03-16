@@ -1,8 +1,12 @@
 <?php
     require_once('jwt_utils.php');
-    require_once('../projetREST/config/dbConnection.php');
+    require_once('config/dbConnection.php');
+    require_once('model/utilisateur.php');
 
-    $database = new dbConnection();
+    $database = new Database();
+    $db = $database->getConnexion();
+
+    $user = new \model\utilisateur($db);
 
     /// Librairies éventuelles (pour la connexion à la BDD, etc.)
     //include('mylib.php');
@@ -12,7 +16,7 @@
 
     /// Identification du type de méthode HTTP envoyée par le client
     $http_method = $_SERVER['REQUEST_METHOD'];
-    if($http_method !="POST"){
+    if($http_method != "POST"){
         deliver_response(405,"ERREUR : Méthode non supportée",null);
     }else{
         /// Cas de la méthode POST
@@ -23,16 +27,15 @@
             deliver_response(400,"Identifiant ou mot de passe non renseigné",null);
             die();  
         } else{
-            $query = "SELECT idUtilisateur, identifiant, motDePasse, role FROM utilisateur";
-            $req = $linkpdo -> prepare($query);
-            if($req == false){
+            $stmt = $user->GET();
+            if(!$stmt){
                 die('Erreur lors de la création du statement');
             }
-            $req2 = $req->execute();
-            if($req2 == false){
+            $req2 = $stmt->execute();
+            if(!$req2){
                     die('Erreur execute');
             }
-            while($row = $req -> fetch()) {
+            while($row = $stmt -> fetch()) {
                 if($values['user']==$row['identifiant']){
                     if($values['mdp'] == $row['motDePasse']){
                         deliver_response(201, "Connexion réussie", ["token"=>generate_jwt(

@@ -8,9 +8,7 @@ function generate_jwt($headers, $payload, $secret = '5Rt0Afe570ZBehyrvoq3') {
 	$signature = hash_hmac('SHA256', "$headers_encoded.$payload_encoded", $secret, true);
 	$signature_encoded = base64url_encode($signature);
 
-	$jwt = "$headers_encoded.$payload_encoded.$signature_encoded";
-
-	return $jwt;
+	return "$headers_encoded.$payload_encoded.$signature_encoded";
 }
 
 function is_jwt_valid($jwt, $secret = '5Rt0Afe570ZBehyrvoq3') {
@@ -75,5 +73,4 @@ function get_bearer_token() {
     }
     return null;
 }
-
 ?>

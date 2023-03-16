@@ -2,12 +2,13 @@
 
 namespace model;
 
-class utilisateur {
+class Utilisateur {
     private $connexion;
     private $table = "utilisateur";
-    public $idPublication;
     public $idUtilisateur;
-    public $aimer;
+    public $identifiant;
+    public $motDePasse;
+    public $role;
 
     public function __construct($db) {
         $this->connexion = $db;

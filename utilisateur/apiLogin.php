@@ -2,18 +2,13 @@
     require_once('jwt_utils.php');
     require_once('../config/dbConnection.php');
     require_once('../model/utilisateur.php');
-    $utilisateur = htmlspecialchars($_POST['user']);
-    $mdp = htmlspecialchars($_POST['mdp']);
+    $utilisateur = htmlspecialchars($_POST['username']);
+    $mdp = htmlspecialchars($_POST['password']);
 
     $database = new Database();
     $db = $database->getConnexion();
 
     $user = new \model\utilisateur($db);
-
-
-
-    /// Librairies éventuelles (pour la connexion à la BDD, etc.)
-    //include('mylib.php');
 
     /// Paramétrage de l'entête HTTP (pour la réponse au Client)
     header("Content-Type:application/json");
@@ -34,11 +29,14 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 extract($row);
                 if ($utilisateur == $identifiant) {
-                    if ($utilisateur == $motDePasse) {
-                        deliver_response(201, "Connexion reussie", ["token" => generate_jwt(
+                    if ($mdp == $motDePasse) {
+                        session_start();
+                        $token=generate_jwt(
                             ["alg" => "SHA256", "typ" => "JWT"],
                             ["idUtilisateur" => $idUtilisateur, "role" => $role, "exp" => time() + 3600]
-                        )]);
+                        );
+                        $_SESSION['token']=$token;
+                        header('Location: ../index.php');
                         die();
                     } else {
                         deliver_response(400, "Mot de passe incorrect", null);

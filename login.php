@@ -9,7 +9,7 @@
 <body>
     <form action="utilisateur/apiLogin.php" method="post">
         <input type='text' name='user' placeholder='Entrer votre username'>
-        <input type='text' name='mdp' placeholder='Enter votre mot de passe'>
+        <input type='password' name='mdp' placeholder='Enter votre mot de passe'>
         <input type='submit' name='envoyer' value='Valider'>
     </form>
 </body>

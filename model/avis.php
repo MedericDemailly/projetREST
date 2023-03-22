@@ -22,4 +22,36 @@ class avis {
         return $query;
     }
 
+    public function POST(){
+        $sql = "INSERT INTO " . $this->table . " VALUES(:idPublication, :idUtilisateur, :aimer";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+        $query->bindParam(":aimer", $this->aimer);
+
+        return $query->execute();
+    }
+
+    public function DELETE(){
+        $sql = "DELETE FROM " . $this->table . " WHERE idPublication = :idPublication AND idUtilisateur = :idUtilisateur";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+
+        return $query->execute();
+    }
+
+    public function PATCH(){
+        $sql = "UPDATE " . $this->table . " SET aimer = :aimer WHERE idPublication = :idPublication AND idUtilisateur = :idUtilisateur";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":aimer", $this->aimer);
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+
+        return $query->execute();
+    }
+
 }

@@ -25,10 +25,9 @@ class publication {
     }
 
     public function POST() {
-        $sql = "INSERT INTO ".$this->table."(idPublication, contenu, idUtilisateur) VALUES(:idPublication, :contenu, :idUtilisateur)";
+        $sql = "INSERT INTO ".$this->table."(contenu, idUtilisateur) VALUES(:contenu, :idUtilisateur)";
         $query = $this->connexion->prepare($sql);
 
-        $query->bindParam(":idPublication", $this->idPublication);
         $query->bindParam(":contenu", $this->contenu);
         $query->bindParam(":idUtilisateur", $this->idUtilisateur);
 
@@ -41,7 +40,7 @@ class publication {
 
         $query->bindParm(1,$this->idPublication);
 
-        if($$query->execute()){
+        if($query->execute()){
             return true;
         }
         return false;

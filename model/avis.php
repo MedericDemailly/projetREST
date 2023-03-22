@@ -34,9 +34,20 @@ class avis {
     }
 
     public function DELETE(){
-        $sql = "DELETE FROM" . $this->table . " WHERE idPublication = :idPublication AND idUtilisateur = :idUtilisateur";
+        $sql = "DELETE FROM " . $this->table . " WHERE idPublication = :idPublication AND idUtilisateur = :idUtilisateur";
         $query = $this->connexion->prepare($sql);
 
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+
+        return $query->execute();
+    }
+
+    public function PATCH(){
+        $sql = "UPDATE " . $this->table . " SET aimer = :aimer WHERE idPublication = :idPublication AND idUtilisateur = :idUtilisateur";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":aimer", $this->aimer);
         $query->bindParam(":idPublication", $this->idPublication);
         $query->bindParam(":idUtilisateur", $this->idUtilisateur);
 

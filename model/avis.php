@@ -22,4 +22,15 @@ class avis {
         return $query;
     }
 
+    public function POST(){
+        $sql = "INSERT INTO " . $this->table . " VALUES( :idPublication, :idUtilisateur, :aimer";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+        $query->bindParam(":aimer", $this->aimer);
+
+        return $query->execute();
+    }
+
 }

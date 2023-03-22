@@ -38,7 +38,7 @@ class publication {
         $sql = "DELETE from ". $this->table." where idPublication = ?";
         $query = $this->connexion->prepare($sql);
 
-        $query->bindParm(1,$this->idPublication);
+        $query->bindParam(1,$this->idPublication);
 
         if($query->execute()){
             return true;

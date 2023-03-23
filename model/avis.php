@@ -14,8 +14,11 @@ class avis {
     }
 
     public function GET() {
-        $sql = "SELECT * from " . $this->table;
+        $sql = "SELECT idUtilisateur from " . $this->table . " WHERE idPublication = :idPublication AND aimer = :aimer";
         $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":aimer", $this->aimer);
 
         $query->execute();
 

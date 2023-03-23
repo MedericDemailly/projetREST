@@ -13,8 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db= $database->getConnexion();
 
     $avis = new \model\avis($db);
-    //$avis->idPublication = $_GET['idPublication'];
-    $stmt = $avis->likeCount();
+    $postedData = file_get_contents('php://input');
+    $postedData = json_decode($postedData,true);
+
+    $avis->idPublication = $postedData['idPublication'];
+    $avis->aimer = $postedData['aimer'];
+    $stmt = $avis->GET();
 
     $tab =[];
 
@@ -22,9 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         extract($row);
 
         $product = [
-            "idPublication" => $idPublication,
-            "likes"         => $likes,
-            "dislikes"      => $dislikes
+            "idUtilisateur" => $idUtilisateur
         ];
 
         $tab['avis'][] = $product;

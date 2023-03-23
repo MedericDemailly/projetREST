@@ -14,11 +14,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $publication = new \model\publication($db);
     $postedData = file_get_contents('php://input');
+    $postedData = json_decode($postedData,true);
 
-    $publication->idPublication = $postedData['idPublication'];
     $publication->idUtilisateur = $postedData['idUtilisateur'];
     $publication->contenu = $postedData['contenu'];
-
     if($publication->POST()) {
         deliver_response(200, "message", null);
     } else {

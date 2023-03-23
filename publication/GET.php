@@ -15,8 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $publication = new \model\publication($db);
     $stmt = $publication->GET();
 
-    $tab =[];
-    $tab['publication'] = [];
+    $tab =[];    
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -28,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
             "idUtilisateur"         => $idUtilisateur
         ];
 
-        $tab['publication'] = $product;
+        $tab['publication'][] = $product;
     }
 
     deliver_response(200, "message", $tab['publication']);

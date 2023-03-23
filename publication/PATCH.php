@@ -14,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'PATCH') {
 
     $publication = new \model\publication($db);
     $postedData = file_get_contents('php://input');
+    $postedData = json_decode($postedData,true);
 
     $publication->idPublication = $postedData['idPublication'];
     $publication->contenu = $postedData['contenu'];

@@ -54,4 +54,12 @@ class avis {
         return $query->execute();
     }
 
+    public function likeCount() {
+        $sql = "select idPublication, sum(aimer=1) as likes, sum(aimer=0) as dislikes from ".$this->table." GROUP BY idPublication";
+        $query = $this->connexion->prepare($sql);
+
+        $query->execute();
+        return $query;
+    }
+
 }

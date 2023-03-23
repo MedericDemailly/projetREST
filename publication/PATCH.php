@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'PATCH') {
     $publication->contenu = $postedData['contenu'];
 
     if($publication->PATCH()) {
-        deliver_response(200, "message", null);
+        deliver_response(200, "Done", null);
     } else {
         http_response_code(405);
         echo json_encode(["message" => "La methode n'est pas autorisee"]);

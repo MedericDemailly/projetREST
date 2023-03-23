@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
     $publication->idPublication = $postedData['idPublication'];
 
     if($publication->DELETE()) {
-        deliver_response(200, "message", null);
+        deliver_response(200, "Done", null);
     } else {
         http_response_code(405);
         echo json_encode(["message" => "La methode n'est pas autorisee"]);

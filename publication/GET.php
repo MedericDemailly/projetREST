@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         $tab['publication'][] = $product;
     }
 
-    deliver_response(200, "message", $tab['publication']);
+    deliver_response(200, "Done", $tab['publication']);
 } else {
     http_response_code(405);
     echo json_encode(["message" => "La methode n'est pas autorisee"]);

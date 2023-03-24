@@ -14,8 +14,11 @@ class avis {
     }
 
     public function GET() {
-        $sql = "SELECT * from " . $this->table;
+        $sql = "SELECT idUtilisateur from " . $this->table . " WHERE idPublication = :idPublication AND aimer = :aimer";
         $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+        $query->bindParam(":aimer", $this->aimer);
 
         $query->execute();
 
@@ -52,6 +55,14 @@ class avis {
         $query->bindParam(":idUtilisateur", $this->idUtilisateur);
 
         return $query->execute();
+    }
+
+    public function likeCount() {
+        $sql = "select idPublication, sum(aimer=1) as likes, sum(aimer=0) as dislikes from ".$this->table." GROUP BY idPublication";
+        $query = $this->connexion->prepare($sql);
+
+        $query->execute();
+        return $query;
     }
 
 }

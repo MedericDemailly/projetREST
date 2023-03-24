@@ -13,24 +13,26 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db= $database->getConnexion();
 
     $avis = new \model\avis($db);
+    $postedData = file_get_contents('php://input');
+    $postedData = json_decode($postedData,true);
+
+    $avis->idPublication = $postedData['idPublication'];
+    $avis->aimer = $postedData['aimer'];
     $stmt = $avis->GET();
 
     $tab =[];
-    $tab['avis'] = [];
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
         $product = [
-            "idPublication" => $idPublication,
-            "idUtilisateur" => $idUtilisateur,
-            "aimer"         => $aimer
+            "idUtilisateur" => $idUtilisateur
         ];
 
-        $tab['avis'] = $product;
+        $tab['avis'][] = $product;
     }
 
-    deliver_response(200, "message", $tab['avis']);
+    deliver_response(200, "Avis", $tab['avis']);
 } else {
     http_response_code(405);
     echo json_encode(["message" => "La methode n'est pas autorisee"]);

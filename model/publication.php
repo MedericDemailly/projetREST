@@ -16,7 +16,7 @@ class publication {
     }
 
     public function GET() {
-        $sql = "SELECT * from " . $this->table;
+        $sql = "SELECT idPublication, dateP, contenu, identifiant from " . $this->table . " JOIN utilisateur USING(idUtilisateur)";
         $query = $this->connexion->prepare($sql);
 
         $query->execute();

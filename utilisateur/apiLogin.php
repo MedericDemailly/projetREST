@@ -44,7 +44,7 @@
                     }
                 }
             }
-            deliver_response(400, "Identifiant inconnu", null);
+            deliver_response(400, "Identifiant incorrect", null);
             die();
         }
     }

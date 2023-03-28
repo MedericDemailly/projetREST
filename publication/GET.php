@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
             "idPublication" => $idPublication,
             "dateP" => $dateP,
             "contenu"         => $contenu,
-            "idUtilisateur"         => $idUtilisateur
+            "auteur"         => $identifiant
         ];
 
         $tab['publication'][] = $product;

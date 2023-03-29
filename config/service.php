@@ -1,17 +1,18 @@
 <?php
     require_once("../utilisateur/jwt_utils.php");
-
-if(is_jwt_valid($_SESSION['token'])) {
+    $bearer = get_bearer_token();
+if(is_jwt_valid($bearer)) {
 
     $tokenParts = explode('.', $_SESSION['token']);
     $payload = base64_decode($tokenParts[1]);
     $role = explode(',', $payload);
+    echo $role[1];
 
     $http_method = $_SERVER['REQUEST_METHOD'];
 
-    switch($role[1]){
 
-        case "'role':'publisher'":
+    switch($role[1]){
+        case '"role":"publisher"':
             switch($http_method){
                 case"GET":
                     include_once("../publication/GET.php");
@@ -29,7 +30,8 @@ if(is_jwt_valid($_SESSION['token'])) {
                 default :
                     break;
             }
-        case "'role':'moderator'" :
+            break;
+        case '"role":"moderator"' :
             switch($http_method){
                 case"GET":
                     include_once("../publication/GET.php");
@@ -48,11 +50,10 @@ if(is_jwt_valid($_SESSION['token'])) {
                 default :
                     break;
             }
-        default :
+        case '"role":null' :
             switch($http_method){
-                case"GET":
-                    include_once("../publication/GET.php");
-                    include_once("../utilisateur.php");
+                case "GET":
+                    include("../publication/GET.php");
                     break;
                 case"DELETE":
                     deliver_response(400,"Sans être connecté vous ne pouvez pas supprimer de message",null);

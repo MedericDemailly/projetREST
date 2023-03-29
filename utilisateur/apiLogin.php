@@ -2,8 +2,8 @@
     require_once('jwt_utils.php');
     require_once('../config/dbConnection.php');
     require_once('../model/utilisateur.php');
-    $utilisateur = htmlspecialchars($_POST['username']);
-    $mdp = htmlspecialchars($_POST['password']);
+    $utilisateur = htmlspecialchars($_GET['username']);
+    $mdp = htmlspecialchars($_GET['password']);
 
     $database = new Database();
     $db = $database->getConnexion();
@@ -36,7 +36,7 @@
                             ["idUtilisateur" => $idUtilisateur, "role" => $role, "exp" => time() + 3600]
                         );
                         $_SESSION['token']=$token;
-                        header('Location: ../index.php');
+                        header('Location: ../login/loginVerify.php');
                         die();
                     } else {
                         deliver_response(400, "Mot de passe incorrect", null);
@@ -44,7 +44,7 @@
                     }
                 }
             }
-            deliver_response(400, "Identifiant inconnu", null);
+            deliver_response(400, "Identifiant incorrect", null);
             die();
         }
     }

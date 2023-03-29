@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
         deliver_response(200, "Done", null);
     } else {
         http_response_code(405);
-        echo json_encode(["message" => "La methode n'est pas autorisee"]);
+        echo json_encode(["message" => "La methode n'a pas reussi"]);
     }
 }
 

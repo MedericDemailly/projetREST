@@ -2,8 +2,8 @@
     require_once('jwt_utils.php');
     require_once('../config/dbConnection.php');
     require_once('../model/utilisateur.php');
-    $utilisateur = htmlspecialchars($_POST['username']);
-    $mdp = htmlspecialchars($_POST['password']);
+    $utilisateur = htmlspecialchars($_GET['username']);
+    $mdp = htmlspecialchars($_GET['password']);
 
     $database = new Database();
     $db = $database->getConnexion();

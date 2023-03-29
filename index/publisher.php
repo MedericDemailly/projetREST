@@ -1,5 +1,6 @@
 <?php
-    session_start();
+session_start();
+echo $_SESSION['token'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">

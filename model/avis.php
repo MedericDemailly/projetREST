@@ -26,7 +26,7 @@ class avis {
     }
 
     public function POST(){
-        $sql = "INSERT INTO " . $this->table . " VALUES(:idPublication, :idUtilisateur, :aimer";
+        $sql = "INSERT INTO " . $this->table . " VALUES(:idPublication, :idUtilisateur, :aimer)";
         $query = $this->connexion->prepare($sql);
 
         $query->bindParam(":idPublication", $this->idPublication);

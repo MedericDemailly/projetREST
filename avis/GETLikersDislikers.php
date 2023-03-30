@@ -16,9 +16,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $postedData = file_get_contents('php://input');
     $postedData = json_decode($postedData,true);
 
-    $avis->idPublication = $postedData['idPublication'];
-    $avis->aimer = $postedData['aimer'];
-    $stmt = $avis->GET();
+    if(isset($postedData['idPublication'])){
+        $avis->idPublication = $postedData['idPublication'];
+        $stmt = $avis->GETPubli();
+    } else{
+        $stmt = $avis->GETAll();
+    }
 
     $tab =[];
 
@@ -26,7 +29,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         extract($row);
 
         $product = [
+            "idPublication" => $idPublication,
+            "aimer" => $aimer,
             "idUtilisateur" => $idUtilisateur
+
         ];
 
         $tab['avis'][] = $product;

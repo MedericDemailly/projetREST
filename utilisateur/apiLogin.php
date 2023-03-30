@@ -34,7 +34,7 @@
                             ["alg" => "SHA256", "typ" => "JWT"],
                             ["idUtilisateur" => $idUtilisateur, "role" => $role, "exp" => time() + 3600]
                         );
-                        deliver_response(200, "Connexion reussie", $token);
+                        deliver_response(200, "Connexion réussie", $token);
                         die();
                     } else {
                         deliver_response(400, "Mot de passe incorrect", null);

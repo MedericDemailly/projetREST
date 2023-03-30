@@ -16,9 +16,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $postedData = file_get_contents('php://input');
     $postedData = json_decode($postedData,true);
 
-    $avis->idPublication = $postedData['idPublication'];
-    $avis->aimer = $postedData['aimer'];
-    $stmt = $avis->GET();
+    if(isset($postedData['idPublication'])){
+        $avis->idPublication = $postedData['idPublication'];
+        $stmt = $avis->GETPubli();
+    } else{
+        $stmt = $avis->GETAll();
+    }
 
     $tab =[];
 
@@ -26,7 +29,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         extract($row);
 
         $product = [
+            "idPublication" => $idPublication,
+            "aimer" => $aimer,
             "idUtilisateur" => $idUtilisateur
+
         ];
 
         $tab['avis'][] = $product;
@@ -36,16 +42,4 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 } else {
     http_response_code(405);
     echo json_encode(["message" => "La methode n'est pas autorisee"]);
-}
-
-function deliver_response($status, $status_message, $data) {
-    /// Paramétrage de l'entête HTTP, suite
-    header("HTTP/1.1 $status $status_message");
-    /// Paramétrage de la réponse retournée
-    $response['status'] = $status;
-    $response['status_message'] = $status_message;
-    $response['data'] = $data;
-    /// Mapping de la réponse au format JSON
-    $json_response = json_encode($response);
-    echo $json_response;
 }

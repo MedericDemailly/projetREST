@@ -13,12 +13,20 @@ class avis {
         $this->connexion = $db;
     }
 
-    public function GET() {
-        $sql = "SELECT idUtilisateur from " . $this->table . " WHERE idPublication = :idPublication AND aimer = :aimer";
+    public function GETAll() {
+        $sql = "SELECT idUtilisateur, idPublication, aimer from " . $this->table . " ORDER BY idPublication, aimer";
+        $query = $this->connexion->prepare($sql);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function GETPubli() {
+        $sql = "SELECT idUtilisateur, idPublication, aimer from " . $this->table . " WHERE idPublication = :idPublication ORDER BY aimer";
         $query = $this->connexion->prepare($sql);
 
         $query->bindParam(":idPublication", $this->idPublication);
-        $query->bindParam(":aimer", $this->aimer);
 
         $query->execute();
 
@@ -57,9 +65,19 @@ class avis {
         return $query->execute();
     }
 
-    public function likeCount() {
+    public function GetAvisAll() {
         $sql = "select idPublication, sum(aimer=1) as likes, sum(aimer=0) as dislikes from ".$this->table." GROUP BY idPublication";
         $query = $this->connexion->prepare($sql);
+
+        $query->execute();
+        return $query;
+    }
+
+    public function GetAvisPubli() {
+        $sql = "select idPublication, sum(aimer=1) as likes, sum(aimer=0) as dislikes from ".$this->table." WHERE idPublication = :idPublication";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
 
         $query->execute();
         return $query;

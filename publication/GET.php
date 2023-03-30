@@ -13,7 +13,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db= $database->getConnexion();
 
     $publication = new \model\publication($db);
-    $stmt = $publication->GET();
+    $postedData = file_get_contents('php://input');
+    $postedData = json_decode($postedData,true);
+
+    if(isset($postedData['idPublication'])) {
+        $publication->idPublication = $postedData['idPublication'];
+        $stmt = $publication->GETPubli();
+    } else if (isset($postedData['idUtilisateur'])) {
+        $publication->idUtilisateur = $postedData['idUtilisateur'];
+        $stmt = $publication->GETPubliUtilisateur();
+    } else {
+        $stmt = $publication->GET();
+    }
 
     $tab =[];    
 
@@ -29,21 +40,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $tab['publication'][] = $product;
     }
-
-    deliver_response(200, "Done", $tab['publication']);
+    if($tab['publication'] != null) {
+        deliver_response(200, "Done", $tab['publication']);
+    } else {
+        deliver_response(401, "N'existe pas", null);
+    }
 } else {
     http_response_code(405);
     echo json_encode(["message" => "La methode n'est pas autorisee"]);
-}
-
-function deliver_response($status, $status_message, $data) {
-    /// Paramétrage de l'entête HTTP, suite
-    header("HTTP/1.1 $status $status_message");
-    /// Paramétrage de la réponse retournée
-    $response['status'] = $status;
-    $response['status_message'] = $status_message;
-    $response['data'] = $data;
-    /// Mapping de la réponse au format JSON
-    $json_response = json_encode($response);
-    echo $json_response;
 }

@@ -24,6 +24,28 @@ class publication {
         return $query;
     }
 
+    public function GETPubliUtilisateur() {
+        $sql = "SELECT idPublication, dateP, contenu, identifiant from " . $this->table . " JOIN utilisateur USING(idUtilisateur) WHERE idUtilisateur = :idUtilisateur";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idUtilisateur", $this->idUtilisateur);
+
+        $query->execute();
+
+        return $query;
+    }
+
+    public function GETPubli() {
+        $sql = "SELECT idPublication, dateP, contenu, identifiant from " . $this->table . " JOIN utilisateur USING(idUtilisateur) WHERE idPublication = :idPublication";
+        $query = $this->connexion->prepare($sql);
+
+        $query->bindParam(":idPublication", $this->idPublication);
+
+        $query->execute();
+
+        return $query;
+    }
+
     public function POST() {
         $sql = "INSERT INTO ".$this->table."(contenu, idUtilisateur) VALUES(:contenu, :idUtilisateur)";
         $query = $this->connexion->prepare($sql);

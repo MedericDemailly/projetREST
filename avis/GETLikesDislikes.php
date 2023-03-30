@@ -12,6 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
     $database = new Database();
     $db= $database->getConnexion();
 
+    $avis = new \model\avis($db);
     $postedData = file_get_contents('php://input');
     $postedData = json_decode($postedData,true);
 

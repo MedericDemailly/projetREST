@@ -30,13 +30,11 @@
                 extract($row);
                 if ($utilisateur == $identifiant) {
                     if ($mdp == $motDePasse) {
-                        session_start();
                         $token=generate_jwt(
                             ["alg" => "SHA256", "typ" => "JWT"],
                             ["idUtilisateur" => $idUtilisateur, "role" => $role, "exp" => time() + 3600]
                         );
-                        $_SESSION['token']=$token;
-                        header('Location: ../login/loginVerify.php');
+                        deliver_response(200, "Connexion réussie", $token);
                         die();
                     } else {
                         deliver_response(400, "Mot de passe incorrect", null);

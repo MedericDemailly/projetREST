@@ -5,7 +5,8 @@
                 switch($http_method){
                     case"GET":
                         if(is_user_allowed()){
-                            include_once("../avis/GET.php");
+                            include_once("../avis/GETLikersDislikers.php");
+                            include_once("../avis/GETLikesDislikes.php");
                             break;
                         } else{
                             deliver_response(401, "Token invalide ou permission refusé",NULL);

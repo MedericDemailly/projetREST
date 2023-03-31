@@ -2,10 +2,10 @@
 
 # Se connecter à la bdd :
 
-adresse serveur (localhost) : "127.0.0.1"
-nom utilisateur : "root"
-mdp utilisateur : ""
-nmo bdd : "projetrest"
+- adresse serveur (localhost) : "127.0.0.1"
+- nom utilisateur : "root"
+- mdp utilisateur : ""
+- nom bdd : "projetrest"
 
 # Les différentes tables de la bdd :
 - avis

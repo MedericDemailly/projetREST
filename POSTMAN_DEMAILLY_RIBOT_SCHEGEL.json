@@ -1,0 +1,704 @@
+{
+	"info": {
+		"_postman_id": "c2d2c1a0-6476-4fde-8153-26acaae865da",
+		"name": "projetREST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25745441"
+	},
+	"item": [
+		{
+			"name": "moderator",
+			"item": [
+				{
+					"name": "GET all publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all avis",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/projetREST/config/serviceAvis.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+
+								"projetREST",
+								"config",
+								"serviceAvis.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET avis selon id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODQ0NTN9.06bFo8SCGwf4OzgRH-JQKNjHfChFB0jxBCrN3zMd0vI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":19}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/serviceAvis.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"serviceAvis.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxNjA4NjZ9.5630_wNi-DOzdCZUMNbq7COJFSgSt-RPcmCXMTUON78",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":17}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":18,\"contenu\":\"non\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idUtilisateur\":1,\"contenu\":\"monco\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET une publication selon id ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":19}"
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET publication d'un utilisateur",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idUtilisateur\":1}"
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "GET publication",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "publisher",
+			"item": [
+				{
+					"name": "GET publication",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxNjE2MDB9.TbkzCtWkdoGVE1Jcqw41P8qX4QqULZimq4yS0lU_bVY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idUtilisateur\":1,\"contenu\":\"ddeuxiemecontenu\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST avis",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxODQzODh9.8QBPSsocQq0dMvci-hQboQbY8JRefncxcGeX0N2pY3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idUtilisateur\":4,\"idPublication\":19,\"aimer\":1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/serviceAvis.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"serviceAvis.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxNjE2NzV9.riZlhhR33Um0hCkn56-aYT4uTkE3IzYF-wfjhonI7Wg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":16}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH publication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxNjE2NzV9.riZlhhR33Um0hCkn56-aYT4uTkE3IzYF-wfjhonI7Wg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":20,\"contenu\":\"changement\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all avis",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxNjE2NzV9.riZlhhR33Um0hCkn56-aYT4uTkE3IzYF-wfjhonI7Wg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/projetREST/config/serviceAvis.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"serviceAvis.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET avis selon id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiNCIsInJvbGUiOiJwdWJsaXNoZXIiLCJleHAiOjE2ODAxNjE2NzV9.riZlhhR33Um0hCkn56-aYT4uTkE3IzYF-wfjhonI7Wg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idPublication\":20}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/serviceAvis.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"serviceAvis.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET publication d'un utilisateur Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"idUtilisateur\":1}"
+						},
+						"url": {
+							"raw": "http://localhost/projetREST/config/servicePublication.php",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"projetREST",
+								"config",
+								"servicePublication.php"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recuperer Token Publisher",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxNjA4NjZ9.5630_wNi-DOzdCZUMNbq7COJFSgSt-RPcmCXMTUON78",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/projetREST/utilisateur/apiLogin.php?username=publisher&password=p",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"projetREST",
+						"utilisateur",
+						"apiLogin.php"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "publisher"
+						},
+						{
+							"key": "password",
+							"value": "p"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperer Token Moderator",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJTSEEyNTYiLCJ0eXAiOiJKV1QifQ.eyJpZFV0aWxpc2F0ZXVyIjoiMyIsInJvbGUiOiJtb2RlcmF0b3IiLCJleHAiOjE2ODAxODM0MDJ9.JOBKHqpvhuhFT7r7P2EVyJc7heNGE91BSEbJ_nfCOvE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/projetREST/utilisateur/apiLogin.php?username=moderator&password=m",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"projetREST",
+						"utilisateur",
+						"apiLogin.php"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "moderator"
+						},
+						{
+							"key": "password",
+							"value": "m"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
